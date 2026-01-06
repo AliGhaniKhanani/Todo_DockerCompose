@@ -38,11 +38,13 @@ jobs:
         run: pip install poetry
 
       - name: Install dependencies
+        working-directory: docker_compose/todo_dockercompose
         env:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/test_db
         run: poetry install
 
       - name: Run tests
+        working-directory: docker_compose/todo_dockercompose
         env:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/test_db
         run: poetry run pytest
